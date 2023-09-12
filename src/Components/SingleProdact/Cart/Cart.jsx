@@ -1,7 +1,7 @@
 import React from "react";
 
 const Cart = ({ cartObj }) => {
-  const { dataObj, handleCartItem } = cartObj;
+  const { dataObj, handleCartItem, handleStored } = cartObj;
   // const {thumbnail,title,description}=dataObj
 
   return (
@@ -21,6 +21,12 @@ const Cart = ({ cartObj }) => {
               }}
             >
               Buy Now
+            </button>
+            <button
+              className="btn btn-info"
+              onClick={() => handleStored(dataObj)}
+            >
+              ADD Cart
             </button>
           </div>
         </div>

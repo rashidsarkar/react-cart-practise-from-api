@@ -1,27 +1,19 @@
-function addToLocalStorage(item) {
-  let storedData = localStorage.getItem("cart") || "[]";
+const getStoredCard = () => {
+  const storedString = localStorage.getItem("cart");
+  if (storedString) {
+    return JSON.parse(storedString);
+  } else {
+    return [];
+  }
+};
+const saveCart = (item) => {
+  const itemToString = JSON.stringify(item);
+  localStorage.setItem("cart", itemToString);
+};
+const addItem = (item) => {
+  const oldItem = getStoredCard();
+  oldItem.push(item);
+  saveCart(oldItem);
+};
 
-  storedData = JSON.parse(storedData);
-
-  storedData.push(...item);
-
-  localStorage.setItem("cart", JSON.stringify(storedData));
-}
-
-function removeFromLocalStorage(itemId) {
-  let storedData = localStorage.getItem("cart") || "[]";
-
-  storedData = JSON.parse(storedData);
-
-  const updatedData = storedData.filter((item) => item.id !== itemId);
-
-  localStorage.setItem("cart", JSON.stringify(updatedData));
-}
-
-function getFromLocalStorage(key) {
-  const storedData = localStorage.getItem(key) || "[]";
-
-  return JSON.parse(storedData);
-}
-
-export { addToLocalStorage, removeFromLocalStorage, getFromLocalStorage };
+export { getStoredCard, saveCart, addItem };
