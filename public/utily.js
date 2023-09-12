@@ -15,5 +15,10 @@ const addItem = (item) => {
   oldItem.push(item);
   saveCart(oldItem);
 };
+const removedFromLS = (id) => {
+  const cart = getStoredCard();
+  const remaing = cart.filter((idx) => id !== idx);
+  saveCart(remaing);
+};
 
-export { getStoredCard, saveCart, addItem };
+export { getStoredCard, saveCart, addItem, removedFromLS };

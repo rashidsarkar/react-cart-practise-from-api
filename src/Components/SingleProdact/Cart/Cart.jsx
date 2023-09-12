@@ -1,7 +1,7 @@
 import React from "react";
 
 const Cart = ({ cartObj }) => {
-  const { dataObj, handleCartItem, handleStored } = cartObj;
+  const { dataObj, handleCartItem, handleStored, handleRemoved } = cartObj;
   // const {thumbnail,title,description}=dataObj
 
   return (

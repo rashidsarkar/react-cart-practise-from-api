@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SingleProdact from "../SingleProdact/SingleProdact";
-import { addItem, getStoredCard } from "../../../public/utily";
+import { addItem, getStoredCard, removedFromLS } from "../../../public/utily";
 import StoredCard from "../StoredCart/StoredCard";
 
 const Prodacts = () => {
@@ -40,13 +40,20 @@ const Prodacts = () => {
 
     addItem(item.id);
   };
+  const handleRemoved = (id) => {
+    // ui teke removed
+    const reamingCart = stord.filter((item) => item.id !== id);
+    setStord(reamingCart);
+    // removed from ls
+    removedFromLS(id);
+  };
   return (
     <div className="mx-auto">
       <h2>My Total Prodact : {prodactsData.length}</h2>
       <h2>My Cart Item : {cartItem.length} </h2>
 
       <div>
-        <StoredCard stord={stord}></StoredCard>
+        <StoredCard handleRemoved={handleRemoved} stord={stord}></StoredCard>
       </div>
       <div className="grid grid-cols-3">
         {prodactsData.map((data) => (
